@@ -1,0 +1,21 @@
+*{box-sizing:border-box}
+    html,body{height:100%}
+    html{overflow-x:hidden}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        linear-gradient(120deg, rgba(63,208,201,.11), transparent 34%),
+        linear-gradient(250deg, rgba(230,184,92,.12), transparent 40%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 26px),
+        var(--bg);
+      font-family:var(--font-sans);
+      overflow:hidden;
+      overflow-x:hidden;
+    }
+
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed;opacity:.55}
+    a{color:inherit}
+    img{display:block;max-width:100%}

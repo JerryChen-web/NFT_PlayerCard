@@ -1,0 +1,24 @@
+:root{
+      --bg:#11110f;
+      --bg-soft:#171815;
+      --surface:#1f211d;
+      --surface-2:#282a25;
+      --surface-3:#303329;
+      --ink:#f7f2e8;
+      --muted:#b9b0a4;
+      --dim:#80786d;
+      --line:rgba(247,242,232,.15);
+      --line-strong:rgba(247,242,232,.26);
+      --gold:#e6b85c;
+      --teal:#3fd0c9;
+      --red:#e55d4f;
+      --green:#78c66d;
+      --blue:#6aa7ff;
+      --violet:#b590ff;
+      --paper:#f4ead9;
+      --paper-ink:#201b15;
+      --shadow:0 18px 46px rgba(0,0,0,.32);
+      --radius:8px;
+      --font-sans:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
+      --font-mono:"Cascadia Code","SFMono-Regular",Consolas,monospace;
+    }

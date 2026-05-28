@@ -1,0 +1,113 @@
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+    .player-card.effect-goal,.player-card.effect-homer,.player-card.effect-award{
+      animation:pulseGlow 1.1s ease both;
+    }
+    .player-card.anim-live{
+      animation:cardFloat 7s ease-in-out infinite;
+    }
+    .player-card.anim-live::after{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      pointer-events:none;
+      z-index:0;
+      opacity:.34;
+      background:
+        linear-gradient(115deg, transparent 0 28%, color-mix(in srgb, var(--rarity-color, var(--gold)) 32%, transparent) 48%, transparent 66%),
+        radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--rarity-color, var(--gold)) 26%, transparent), transparent 34%);
+      transform:translateX(-38%);
+      animation:raritySweep 5.8s ease-in-out infinite;
+    }
+    .player-card.rarity-common.anim-live::after{opacity:.12;animation-duration:8s}
+    .player-card.rarity-uncommon.anim-live::after{opacity:.18;animation-duration:7.2s}
+    .player-card.rarity-rare.anim-live::after{opacity:.28}
+    .player-card.rarity-superRare.anim-live::after{opacity:.34}
+    .player-card.rarity-epic.anim-live::after{opacity:.45;background:
+      radial-gradient(circle at 20% 20%, rgba(181,144,255,.34), transparent 18%),
+      radial-gradient(circle at 82% 38%, rgba(63,208,201,.24), transparent 20%),
+      linear-gradient(115deg, transparent 0 30%, rgba(181,144,255,.26) 48%, transparent 68%)}
+    .player-card.rarity-legendary.anim-live::after{opacity:.52;background:
+      radial-gradient(circle at 50% 0, rgba(230,184,92,.34), transparent 34%),
+      linear-gradient(115deg, transparent 0 24%, rgba(255,231,160,.32) 48%, transparent 70%)}
+    .player-card.rarity-mythic.anim-live::after,.player-card.rarity-limited.anim-live::after,.player-card.rarity-oneOfOne.anim-live::after{opacity:.62;animation-duration:4.6s}
+    .player-card.rarity-oneOfOne.anim-live::after{
+      background:linear-gradient(115deg, transparent 0 20%, rgba(63,208,201,.24), rgba(230,184,92,.34), rgba(181,144,255,.28), transparent 72%);
+    }
+    @keyframes pulseGlow{
+      0%{box-shadow:0 0 0 rgba(230,184,92,0)}
+      34%{box-shadow:0 0 0 4px rgba(230,184,92,.28),0 22px 64px rgba(0,0,0,.42);box-shadow:0 0 0 4px color-mix(in srgb, var(--rarity-color, var(--gold)) 45%, transparent),0 22px 64px rgba(0,0,0,.42)}
+      100%{box-shadow:0 18px 44px rgba(0,0,0,.28)}
+    }
+    @keyframes raritySweep{
+      0%,100%{transform:translateX(-42%) skewX(-8deg)}
+      50%{transform:translateX(42%) skewX(-8deg)}
+    }
+    @keyframes cardFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-3px)}
+    }
+    body.animations-off .player-card,
+    body.animations-off .player-card::before,
+    body.animations-off .player-card::after{
+      animation:none!important;
+    }
+
+
+    .intro-overlay{
+      position:absolute;
+      inset:58px 0 0;
+      z-index:6;
+      display:none;
+      place-items:center;
+      padding:18px;
+      background:radial-gradient(circle at 50% 35%, rgba(0,0,0,.42), rgba(17,17,15,.92) 68%);
+      overflow:hidden;
+    }
+    .modal.intro-playing .intro-overlay{display:grid}
+    .intro-card{
+      position:relative;
+      width:min(560px,100%);
+      min-height:300px;
+      display:grid;
+      align-content:center;
+      gap:12px;
+      border:1px solid rgba(230,184,92,.48);
+      border:1px solid color-mix(in srgb, var(--intro-a, var(--gold)) 54%, var(--line));
+      border-radius:8px;
+      padding:24px;
+      text-align:center;
+      background:radial-gradient(circle at 30% 18%, rgba(230,184,92,.18), transparent 36%), rgba(31,33,29,.92);
+      background:
+        radial-gradient(circle at 30% 18%, color-mix(in srgb, var(--intro-a, var(--gold)) 24%, transparent), transparent 36%),
+        radial-gradient(circle at 70% 72%, color-mix(in srgb, var(--intro-b, var(--teal)) 22%, transparent), transparent 40%),
+        rgba(31,33,29,.92);
+      box-shadow:0 28px 80px rgba(0,0,0,.45);
+      overflow:hidden;
+      animation:introRise .44s ease both;
+    }
+    .intro-card h3{margin:0;color:#fff;font-size:30px;letter-spacing:0}
+    .intro-card p{margin:0 auto;max-width:420px;color:var(--muted);line-height:1.55}
+    .intro-kicker{color:var(--gold);font-family:var(--font-mono);font-size:11px;text-transform:uppercase}
+    .intro-motifs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+    .intro-motifs span{border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:6px 8px;background:rgba(255,255,255,.06);font-size:12px;color:#fff}
+    .intro-lines{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(105deg, transparent 0 28%, rgba(230,184,92,.24) 48%, transparent 64%);
+      background:
+        linear-gradient(105deg, transparent 0 28%, color-mix(in srgb, var(--intro-a, var(--gold)) 30%, transparent) 48%, transparent 64%),
+        repeating-linear-gradient(90deg, transparent 0 34px, color-mix(in srgb, var(--intro-b, var(--teal)) 18%, transparent) 34px 35px);
+      opacity:.42;
+      animation:introSweep 1.8s ease-in-out infinite;
+    }
+    .intro-card > *:not(.intro-lines){position:relative;z-index:1}
+    @keyframes introRise{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes introSweep{0%{transform:translateX(-34%)}50%{transform:translateX(22%)}100%{transform:translateX(48%)}}
+
+    @media (prefers-reduced-motion: reduce){
+      .player-card,.player-card::before,.player-card::after,.intro-card,.intro-lines{
+        animation:none!important;
+      }
+    }

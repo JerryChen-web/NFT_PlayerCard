@@ -1,0 +1,333 @@
+.card-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+      gap:14px;
+    }
+
+    .player-card{
+      position:relative;
+      min-width:0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border:1px solid color-mix(in srgb, var(--rarity-color, var(--line-strong)) 45%, var(--line));
+      border-radius:8px;
+      background:var(--surface);
+      background:
+        linear-gradient(145deg, color-mix(in srgb, var(--team-a, #3fd0c9) 18%, transparent), transparent 38%),
+        linear-gradient(315deg, color-mix(in srgb, var(--team-b, #e6b85c) 16%, transparent), transparent 48%),
+        var(--surface);
+      box-shadow:0 18px 44px rgba(0,0,0,.28);
+      transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    .player-card:hover{
+      transform:translateY(-2px);
+      border-color:var(--rarity-color, var(--gold));
+      border-color:color-mix(in srgb, var(--rarity-color, var(--gold)) 65%, white 5%);
+      box-shadow:0 22px 54px rgba(0,0,0,.36);
+    }
+
+    .card-topline{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      padding:11px 12px;
+      min-height:46px;
+      border-bottom:1px solid var(--line);
+      background:rgba(0,0,0,.16);
+    }
+    .serial{
+      color:var(--muted);
+      font-family:var(--font-mono);
+      font-size:11px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+    .rarity-pill,.status-pill,.badge,.source-pill{
+      display:inline-flex;
+      align-items:center;
+      min-height:25px;
+      max-width:100%;
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:4px 8px;
+      color:#fff;
+      background:rgba(255,255,255,.07);
+      font-size:11px;
+      font-weight:800;
+      line-height:1.2;
+      overflow-wrap:anywhere;
+    }
+    .rarity-pill{border-color:var(--rarity-color,var(--gold));border-color:color-mix(in srgb, var(--rarity-color, var(--gold)) 55%, var(--line));color:var(--rarity-color,var(--gold))}
+    .status-pill.warning{border-color:rgba(229,93,79,.48);color:#ffb1a8;background:rgba(229,93,79,.11)}
+    .status-pill.special{border-color:rgba(120,198,109,.48);color:#bdf5b7;background:rgba(120,198,109,.11)}
+
+    .media-frame{
+      position:relative;
+      height:248px;
+      overflow:hidden;
+      background:linear-gradient(150deg, rgba(63,208,201,.24), rgba(230,184,92,.18)), var(--surface-2);
+      background:
+        linear-gradient(150deg, color-mix(in srgb, var(--team-a,#3fd0c9) 42%, #20221e), color-mix(in srgb, var(--team-b,#e6b85c) 34%, #11110f)),
+        var(--surface-2);
+    }
+    .media-frame::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:58%;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.72));
+      pointer-events:none;
+    }
+    .media-frame img.player-img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center top;
+      filter:saturate(1.08) contrast(1.03);
+    }
+    .media-frame.is-fallback img.player-img{display:none}
+    .media-frame.is-fallback::before{
+      content:"";
+      position:absolute;
+      inset:16px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:8px;
+      opacity:.75;
+      pointer-events:none;
+    }
+    .media-soccer.is-fallback{
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,.10) 1px, transparent 1px),
+        linear-gradient(150deg, rgba(63,208,201,.26), rgba(230,184,92,.16)),
+        var(--surface-2);
+      background-size:42px 42px,42px 42px,auto,auto;
+    }
+    .media-basketball.is-fallback{
+      background:
+        radial-gradient(circle at 50% 50%, transparent 0 31%, rgba(255,255,255,.18) 32% 33%, transparent 34%),
+        linear-gradient(90deg, transparent 49%, rgba(255,255,255,.14) 50%, transparent 51%),
+        linear-gradient(150deg, rgba(230,184,92,.28), rgba(229,93,79,.18)),
+        var(--surface-2);
+    }
+    .media-baseball.is-fallback{
+      background:
+        radial-gradient(circle at 20% 48%, transparent 0 34%, rgba(255,255,255,.18) 35% 36%, transparent 37%),
+        radial-gradient(circle at 80% 52%, transparent 0 34%, rgba(255,255,255,.18) 35% 36%, transparent 37%),
+        repeating-linear-gradient(58deg, transparent 0 18px, rgba(229,93,79,.22) 18px 20px, transparent 20px 30px),
+        linear-gradient(150deg, rgba(229,93,79,.25), rgba(230,184,92,.17)),
+        var(--surface-2);
+    }
+    .fallback-initials{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      color:rgba(255,255,255,.88);
+      font-weight:950;
+      font-size:58px;
+      letter-spacing:0;
+      text-shadow:0 4px 22px rgba(0,0,0,.36);
+    }
+    .media-frame:not(.is-fallback) .fallback-initials{display:none}
+    .fallback-note{
+      position:absolute;
+      left:12px;
+      bottom:76px;
+      z-index:2;
+      max-width:calc(100% - 92px);
+      display:none;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:8px;
+      padding:6px 8px;
+      background:rgba(0,0,0,.34);
+      color:#fff;
+      font-family:var(--font-mono);
+      font-size:10px;
+      line-height:1.35;
+      overflow-wrap:anywhere;
+    }
+    .media-frame.is-fallback .fallback-note{display:block}
+    .team-logo{
+      position:absolute;
+      right:12px;
+      bottom:12px;
+      width:54px;
+      height:54px;
+      z-index:2;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,.38);
+      border-radius:8px;
+      background:rgba(255,255,255,.9);
+      box-shadow:0 10px 26px rgba(0,0,0,.28);
+      overflow:hidden;
+    }
+    .team-logo img{
+      width:42px;
+      height:42px;
+      object-fit:contain;
+    }
+    .team-logo.logo-failed::before{
+      content:attr(data-code);
+      color:#1c1710;
+      font-weight:900;
+      font-size:13px;
+    }
+    .media-label{
+      position:absolute;
+      left:12px;
+      bottom:12px;
+      z-index:2;
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      max-width:calc(100% - 82px);
+    }
+
+    .card-body{
+      display:grid;
+      gap:12px;
+      padding:14px;
+    }
+    .name-row{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      align-items:start;
+      gap:10px;
+    }
+    .player-name{
+      margin:0;
+      color:#fff;
+      font-size:22px;
+      line-height:1.08;
+      letter-spacing:0;
+      overflow-wrap:anywhere;
+    }
+    .team-line{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.35;
+    }
+    .number-chip{
+      min-width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border:1px solid var(--line);
+      border-radius:8px;
+      color:#fff;
+      background:rgba(0,0,0,.18);
+      font-family:var(--font-mono);
+      font-weight:900;
+    }
+    .badge-row{display:flex;flex-wrap:wrap;gap:6px}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:8px;
+    }
+    .stat-box{
+      min-height:62px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:8px;
+      background:rgba(255,255,255,.045);
+    }
+    .stat-box span{
+      display:block;
+      color:var(--dim);
+      font-size:10px;
+      font-family:var(--font-mono);
+      line-height:1.1;
+      text-transform:uppercase;
+    }
+    .stat-box b{
+      display:block;
+      margin-top:7px;
+      color:#fff;
+      font-size:18px;
+      line-height:1;
+      font-family:var(--font-mono);
+      overflow-wrap:anywhere;
+    }
+    .value-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .value-row b{
+      color:#fff;
+      font-family:var(--font-mono);
+      font-size:14px;
+    }
+    .card-actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+    .card-actions.three{grid-template-columns:1fr 1fr 1fr}
+
+    .ability-head{
+      display:grid;
+      grid-template-columns:64px minmax(0,1fr) 38px;
+      gap:8px;
+      align-items:center;
+    }
+    .ovr{
+      min-height:58px;
+      border:1px solid var(--line);
+      border:1px solid color-mix(in srgb, var(--rarity-color, var(--gold)) 48%, var(--line));
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.045);
+      background:linear-gradient(135deg, color-mix(in srgb, var(--rarity-color, var(--gold)) 18%, transparent), rgba(255,255,255,.045));
+    }
+    .ovr span{font-size:10px;color:var(--muted);font-family:var(--font-mono)}
+    .ovr b{font-size:24px;line-height:1;color:#fff;font-family:var(--font-mono)}
+    .ability-mini{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:6px;
+    }
+    .ability-mini span{
+      min-height:32px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      color:var(--muted);
+      font-size:10px;
+      background:rgba(255,255,255,.04);
+    }
+    .ability-mini b{color:#fff}
+    .watch-btn.active{color:#17110a;background:linear-gradient(135deg,var(--gold),#fff2c7)}
+    .skill-row{display:flex;flex-wrap:wrap;gap:6px}
+    .skill-row span{
+      border:1px solid rgba(63,208,201,.34);
+      border-radius:8px;
+      padding:5px 7px;
+      color:#c9f7f5;
+      background:rgba(63,208,201,.08);
+      font-size:11px;
+      font-weight:800;
+    }
+    .player-card{box-shadow:0 18px 44px rgba(0,0,0,.28),0 0 0 1px rgba(230,184,92,.12);box-shadow:0 18px 44px rgba(0,0,0,.28),0 0 0 1px color-mix(in srgb, var(--rarity-color, var(--gold)) 12%, transparent)}
+    .player-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(circle at 50% 0, rgba(230,184,92,.16), transparent 34%);
+      background:radial-gradient(circle at 50% 0, color-mix(in srgb, var(--rarity-color, var(--gold)) 20%, transparent), transparent 34%);
+      opacity:.75;
+      z-index:0;
+    }
+    .player-card > *{position:relative;z-index:1}
